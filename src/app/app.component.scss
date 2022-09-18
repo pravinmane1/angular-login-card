@@ -1,0 +1,152 @@
+:host .container {
+  font-family: "Space Grotesk", sans-serif;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: url("../assets/bg-main-desktop.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+}
+
+.letter-spacing{
+  letter-spacing: 1px;
+}
+
+.preview,
+.input {
+  color: hsl(278, 68%, 11%);
+  flex: 1 0 0px;
+}
+
+.input{
+  display: flex;
+  align-items: center;
+}
+.preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1px;
+}
+
+.display-card-front {
+  height: 219px;
+  width: 400px;
+  border-radius: 10px;
+  background: url("../assets/bg-card-front.png");
+  background-size: contain;
+  box-shadow: 1px 1px 50px -20px;
+
+  .card-number {
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 25px;
+  }
+
+  .preview-front-info {
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 0px 30px;
+    margin-top: 30px;
+    font-size: 14px;
+    .name {
+      width: 80%;
+    }
+    .exp {
+      width: 20%;
+      text-align: right;
+    }
+  }
+}
+
+.display-card-back {
+  height: 219px;
+  width: 400px;
+  margin-top: 40px;
+  margin-left: 20%;
+  border-radius: 10px;
+  background: url("../assets/bg-card-back.png");
+  background-size: contain;
+  box-shadow: 1px 1px 50px -20px;
+
+  .cvc {
+    color: white;
+    display: inline-block;
+    margin-top: 95px;
+    margin-left: 320px;
+  }
+}
+
+.input-label {
+  display: block;
+  font-size: 12px;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+input {
+  border: 1px solid hsl(270, 3%, 87%);
+  border-radius: 8px;
+  padding: 15px;
+  width: calc(100% - 32px);
+  font-family: 'Space Grotesk';
+  font-size: 18px;
+  color: hsl(278, 68%, 11%);;
+}
+
+input:focus {
+  outline: none !important;
+  border-color: hsl(278, 94%, 30%);
+}
+
+.input-card {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+button {
+  margin-top: 50px;
+  border-radius: 8px;
+  padding: 15px;
+  color: white;
+  background: hsl(278, 68%, 11%);
+  font-size: 18px;
+  font-family: 'Space Grotesk';
+}
+
+.exp-cvc {
+  display: flex;
+  justify-content: space-between;
+  .exp {
+    margin-right: 5px;
+    width: 50%;
+
+    .mmyy {
+      display: flex;
+      div:nth-of-type(1) {
+        margin-right: 5px;
+      }
+      div:nth-last-of-type(1) {
+        margin-left: 5px;
+      }
+    }
+  }
+  .cvc {
+    margin-left: 5px;
+    width: 50%;
+  }
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: hsl(270, 3%, 87%);
+  opacity: 1; /* Firefox */
+  letter-spacing: 1px;
+  font-size: 18px;
+}
