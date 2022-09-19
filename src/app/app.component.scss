@@ -1,3 +1,5 @@
+$input-error-color: hsl(0, 100%, 66%);
+
 :host .container {
   font-family: "Space Grotesk", sans-serif;
   position: absolute;
@@ -11,7 +13,7 @@
   display: flex;
 }
 
-.letter-spacing{
+.letter-spacing {
   letter-spacing: 1px;
 }
 
@@ -21,7 +23,7 @@
   flex: 1 0 0px;
 }
 
-.input{
+.input {
   display: flex;
   align-items: center;
 }
@@ -95,9 +97,33 @@ input {
   border-radius: 8px;
   padding: 15px;
   width: calc(100% - 32px);
-  font-family: 'Space Grotesk';
+  font-family: "Space Grotesk";
   font-size: 18px;
-  color: hsl(278, 68%, 11%);;
+  color: hsl(278, 68%, 11%);
+}
+
+.thank-you {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 80px;
+  .thank-you-text {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+  .continue{
+    width: 25vw;
+  }
+  .thank-you-message{
+    color: hsl(279, 6%, 55%)
+  }
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid $input-error-color;
 }
 
 input:focus {
@@ -118,8 +144,15 @@ button {
   color: white;
   background: hsl(278, 68%, 11%);
   font-size: 18px;
-  font-family: 'Space Grotesk';
+  font-family: "Space Grotesk";
+  cursor: pointer;
 }
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+
 
 .exp-cvc {
   display: flex;
@@ -144,9 +177,27 @@ button {
   }
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: hsl(270, 3%, 87%);
   opacity: 1; /* Firefox */
   letter-spacing: 1px;
   font-size: 18px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.error-text {
+  color: $input-error-color;
+  font-size: 10px;
 }

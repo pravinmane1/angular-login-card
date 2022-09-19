@@ -3,50 +3,138 @@
     <div class="preview-card">
       <div class="display-card-front">
         <img src="../assets/card-logo.svg" alt="" style="margin: 30px" />
-        <div class="card-number">0000 0000 0000 0000</div>
+        <div class="card-number">
+          {{
+            cardForm && cardForm.value && cardForm.value.cardNumber
+              ? cardForm.value.cardNumber
+              : "0000 0000 0000 0000"
+          }}
+        </div>
         <div class="preview-front-info">
-          <div class="name">JANE APPLESEED</div>
-          <div class="exp">00/00</div>
+          <div class="name">
+            {{
+              cardForm && cardForm.value && cardForm.value.name
+                ? cardForm.value.name
+                : "JANE APPLESEED"
+            }}
+          </div>
+          <div class="exp">
+            {{
+              cardForm && cardForm.value && cardForm.value.expMonth
+                ? cardForm.value.expMonth
+                : "00"
+            }}/{{
+              cardForm && cardForm.value && cardForm.value.expYear
+                ? cardForm.value.expYear
+                : "00"
+            }}
+          </div>
         </div>
       </div>
-      <div class="display-card-back"><div class="cvc">123</div></div>
+      <div class="display-card-back">
+        <div class="cvc">
+          {{
+            cardForm && cardForm.value && cardForm.value.cvc
+              ? cardForm.value.cvc
+              : "000"
+          }}
+        </div>
+      </div>
     </div>
   </div>
   <div class="input">
-    <div class="input-card">
-      <div>
-        <label for="name" class="input-label">CARDHOLDER NAME</label
-        ><input type="text" placeholder="e.g. Jane Appleseed" />
-      </div>
-      <div>
-        <label for="number" class="input-label">CARD NUMBER</label
-        ><input type="text" placeholder="e.g. 1234 5678 9123 0000" />
-      </div>
-      <div class="exp-cvc">
-        <div class="exp">
-          <label for="exp date" class="input-label">EXP. DATE (MM/YY)</label>
-          <div class="mmyy">
-            <div>
-              <input type="text" placeholder="MM" />
-            </div>
-            <div><input type="text" placeholder="YY" /></div>
+    <div *ngIf="!formSubmitted; else thankYou">
+      <form #f="ngForm">
+        <div class="input-card">
+          <div>
+            <label for="name" class="input-label">CARDHOLDER NAME</label
+            ><input
+              type="text"
+              placeholder="e.g. Jane Appleseed"
+              ngModel
+              name="name"
+              required
+            />
           </div>
+          <div>
+            <label for="number" class="input-label">CARD NUMBER</label
+            ><input
+              type="text"
+              placeholder="e.g. 1234 5678 9123 0000"
+              ngModel
+              name="cardNumber"
+              required
+              (input)="onCardNumberEnter($event)"
+              maxlength="19"
+            />
+          </div>
+          <div class="exp-cvc">
+            <div class="exp">
+              <label for="exp date" class="input-label"
+                >EXP. DATE (MM/YY)</label
+              >
+              <div class="mmyy">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="MM"
+                    ngModel
+                    name="expMonth"
+                    maxlength="2"
+                    required
+                    #expMonth="ngModel"
+                  />
+                  <span
+                    class="error-text"
+                    *ngIf="!expMonth.valid && expMonth.touched"
+                    >Can't be blank</span
+                  >
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="YY"
+                    ngModel
+                    name="expYear"
+                    maxlength="2"
+                    required
+                    #expYear="ngModel"
+                  />
+                  <span
+                    class="error-text"
+                    *ngIf="!expYear.valid && expYear.touched"
+                    >Can't be blank</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="cvc">
+              <label for="cvc" class="input-label">CVC</label
+              ><input
+                type="text"
+                placeholder="e.g. 123"
+                ngModel
+                name="cvc"
+                maxlength="3"
+                required
+                #cvc="ngModel"
+              />
+              <span class="error-text" *ngIf="!cvc.valid && cvc.touched"
+                >Can't be blank</span
+              >
+            </div>
+          </div>
+          <button (click)="onSubmit(f)">Confirm</button>
         </div>
-        <div class="cvc">
-          <label for="cvc" class="input-label">CVC</label
-          ><input type="text" placeholder="e.g. 123" />
-        </div>
-      </div>
-      <button>Confirm</button>
+      </form>
     </div>
+    <ng-template #thankYou>
+      <div class="thank-you">
+      <img src="../assets/icon-complete.svg" alt="">
+      <div class="thank-you-text">THANK YOU!</div>
+      <div class="thank-you-message">We've added your card details</div>
+      <button class="continue" (click)="resetForm()">Continue</button>
+    </div>
+     </ng-template>
   </div>
 </div>
-
-<!-- <div class="container">
-  <div style="border: 1px solid red">
-    <div style="border: 1px solid blue; height: 150px; width: 150px">hii</div>
-    <div style="border: 1px solid green; height: 150px; width: 150px">
-      hello
-    </div>
-  </div>
-</div> -->
