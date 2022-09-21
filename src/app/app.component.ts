@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,17 +6,32 @@ import { NgForm } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'card-challenge';
   public formSubmitted: boolean;
-
+  public formModel: {
+    name: string;
+    cardNumber: string;
+    expMonth: string;
+    expYear: string;
+    cvc: string;
+  };
   @ViewChild('f') cardForm: NgForm;
 
+  ngOnInit(): void {
+    this.formModel = {
+      name: '',
+      cardNumber: '',
+      expMonth: '',
+      expYear: '',
+      cvc: '',
+    };
+  }
   onSubmit(ngForm: NgForm) {
     this.formSubmitted = true;
   }
 
-  resetForm(){
+  resetForm() {
     this.formSubmitted = false;
   }
 

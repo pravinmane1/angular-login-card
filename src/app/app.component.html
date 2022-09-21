@@ -5,27 +5,27 @@
         <img src="../assets/card-logo.svg" alt="" style="margin: 30px" />
         <div class="card-number">
           {{
-            cardForm && cardForm.value && cardForm.value.cardNumber
-              ? cardForm.value.cardNumber
+            formModel.cardNumber
+              ? formModel.cardNumber
               : "0000 0000 0000 0000"
           }}
         </div>
         <div class="preview-front-info">
           <div class="name">
             {{
-              cardForm && cardForm.value && cardForm.value.name
-                ? cardForm.value.name
+              formModel.name
+                ? formModel.name
                 : "JANE APPLESEED"
             }}
           </div>
           <div class="exp">
             {{
-              cardForm && cardForm.value && cardForm.value.expMonth
-                ? cardForm.value.expMonth
+              formModel.expMonth
+                ? formModel.expMonth
                 : "00"
             }}/{{
-              cardForm && cardForm.value && cardForm.value.expYear
-                ? cardForm.value.expYear
+              formModel.expYear
+                ? formModel.expYear
                 : "00"
             }}
           </div>
@@ -34,8 +34,8 @@
       <div class="display-card-back">
         <div class="cvc">
           {{
-            cardForm && cardForm.value && cardForm.value.cvc
-              ? cardForm.value.cvc
+            formModel.cvc
+              ? formModel.cvc
               : "000"
           }}
         </div>
@@ -54,6 +54,7 @@
               ngModel
               name="name"
               required
+              [(ngModel)]="formModel.name"
             />
           </div>
           <div>
@@ -66,6 +67,7 @@
               required
               (input)="onCardNumberEnter($event)"
               maxlength="19"
+              [(ngModel)]="formModel.cardNumber"
             />
           </div>
           <div class="exp-cvc">
@@ -83,6 +85,7 @@
                     maxlength="2"
                     required
                     #expMonth="ngModel"
+                    [(ngModel)]="formModel.expMonth"
                   />
                   <span
                     class="error-text"
@@ -99,6 +102,7 @@
                     maxlength="2"
                     required
                     #expYear="ngModel"
+                    [(ngModel)]="formModel.expYear"
                   />
                   <span
                     class="error-text"
@@ -118,6 +122,7 @@
                 maxlength="3"
                 required
                 #cvc="ngModel"
+                [(ngModel)]="formModel.cvc"
               />
               <span class="error-text" *ngIf="!cvc.valid && cvc.touched"
                 >Can't be blank</span
